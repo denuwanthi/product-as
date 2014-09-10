@@ -288,6 +288,16 @@
                                     org.wso2.carbon:org.wso2.carbon.as.runtimes.cxf.feature:${carbon.platform.version}
                                 </featureArtifactDef>
                                 <!-- end of as runtime features-->
+                                <!-- protobuf binary service features-->
+                                <featureArtifactDef>
+                                    org.wso2.carbon:org.wso2.carbon.protobuf.service.server.feature:${protobuf.service.version}
+                                </featureArtifactDef>
+                                <!-- end of protobuf binary service features-->
+                                <!--netty feature-->
+                                <featureArtifactDef>
+                                    org.wso2.carbon:org.wso2.carbon.netty.server.feature:${netty.version}
+                                </featureArtifactDef>
+                                <!--end of netty feature-->
 
                             </featureArtifacts>
                         </configuration>
@@ -356,7 +366,7 @@
                             <profile>axis2service</profile>
                         </configuration>
                     </execution>
-                   <!-- <execution>
+                    <!-- <execution>
                         <id>creating-dataservice-profile</id>
                         <phase>package</phase>
                         <goals>
@@ -567,7 +577,7 @@
                                     <version>${carbon.platform.version}</version>
                                 </feature>
 
-                               <!-- <feature>
+                                <!-- <feature>
                                     <id>org.wso2.carbon.dataservices.feature.group</id>
                                     <version>${carbon.platform.version}</version>
                                 </feature>-->
@@ -697,6 +707,17 @@
 
                                 <!-- end of as-runtimes-->
 
+                                <!--protobuf service features-->
+                                <feature>
+                                    <id>org.wso2.carbon.protobuf.service.server.feature.group</id>
+                                    <version>${protobuf.service.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.netty.server.feature.group</id>
+                                    <version>${netty.version}</version>
+                                </feature>
+                                <!--end of protobuf service features-->
+
                             </features>
                         </configuration>
                     </execution>
@@ -811,7 +832,7 @@
                                     <version>${carbon.platform.version}</version>
                                 </feature>
 
-                               <!-- <feature>
+                                <!-- <feature>
                                     <id>org.wso2.carbon.transport.mgt.server.feature.group</id>
                                     <version>${carbon.platform.version}</version>
                                 </feature>
@@ -868,7 +889,7 @@
                                     <version>${carbon.platform.version}</version>
                                 </feature>
 
-                               <!-- <feature>
+                                <!-- <feature>
                                     <id>org.wso2.carbon.dataservices.server.feature.group</id>
                                     <version>${carbon.platform.version}</version>
                                 </feature>-->
@@ -992,6 +1013,16 @@
                                 </feature>
                                 <!-- end of as -runtime features -->
 
+                                <!--protobuf service features-->
+                                <feature>
+                                    <id>org.wso2.carbon.protobuf.service.server.feature.group</id>
+                                    <version>${protobuf.service.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>org.wso2.carbon.netty.server.feature.group</id>
+                                    <version>${netty.version}</version>
+                                </feature>
+                                <!--end of protobuf service features-->
                             </features>
                         </configuration>
                     </execution>
@@ -1290,7 +1321,7 @@
                                     <version>${carbon.platform.version}</version>
                                 </feature>-->
 
-                              <!--  <feature>
+                                <!--  <feature>
                                     <id>org.wso2.carbon.service.mgt.feature.group</id>
                                     <version>${carbon.platform.version}</version>
                                 </feature>
@@ -1320,7 +1351,7 @@
                                     <version>${carbon.platform.version}</version>
                                 </feature>
 
-                               <!-- <feature>
+                                <!-- <feature>
                                     <id>org.wso2.carbon.transport.mgt.feature.group</id>
                                     <version>${carbon.platform.version}</version>
                                 </feature>
@@ -1462,7 +1493,7 @@
                         </configuration>
                     </execution>
 
-                  <!--  <execution>
+                    <!--  <execution>
                         <id>3-p2-profile-generation-dataservices</id>
                         <phase>package</phase>
                         <goals>

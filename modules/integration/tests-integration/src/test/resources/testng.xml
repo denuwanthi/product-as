@@ -19,6 +19,11 @@
             <package name="org.wso2.appserver.integration.tests.deployedmoduleservice"/>
         </packages>
     </test>-->
+    <test name="protobuf-tests" preserve-order="true" parallel="false">
+        <packages>
+            <package name="org.wso2.appserver.integration.tests.protobufservice"/>
+        </packages>
+    </test>
 
   <!--  <test name="sample-service-tests" preserve-order="true" parallel="false">
         <packages>

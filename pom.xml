@@ -354,6 +354,31 @@
                 <version>${xfer.version}</version>
                 <type>jar</type>
             </dependency>
+            <dependency>
+                <groupId>com.googlecode.protobuf-rpc-pro</groupId>
+                <artifactId>protobuf-rpc-pro-duplex</artifactId>
+                <version>${protobuf-rpc-pro-duplex.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>${google.protobuf.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.2</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>1.5.6</version>
+                <scope>compile</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -456,6 +481,11 @@
         <jaggery.stub.version>0.9.0-SNAPSHOT</jaggery.stub.version>
         <test.framework.version>4.3.1-SNAPSHOT</test.framework.version>
         <xfer.version>3.3.0</xfer.version>
+
+        <protobuf.service.version>1.0.0-SNAPSHOT</protobuf.service.version>
+        <protobuf-rpc-pro-duplex.version>3.2.3</protobuf-rpc-pro-duplex.version>
+        <google.protobuf.version>2.5.0</google.protobuf.version>
+        <netty.version>4.0.15.Final</netty.version>
 
     </properties>
 
