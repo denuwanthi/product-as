@@ -1,19 +1,20 @@
 /*
-*Copyright (c) 2005-2010, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+* Copyright (c) 2005-2014, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 *
-*WSO2 Inc. licenses this file to you under the Apache License,
-*Version 2.0 (the "License"); you may not use this file except
-*in compliance with the License.
-*You may obtain a copy of the License at
+* WSO2 Inc. licenses this file to you under the Apache License,
+* Version 2.0 (the "License"); you may not use this file except
+* in compliance with the License.
+* You may obtain a copy of the License at
 *
-*http://www.apache.org/licenses/LICENSE-2.0
+* http://www.apache.org/licenses/LICENSE-2.0
 *
-*Unless required by applicable law or agreed to in writing,
-*software distributed under the License is distributed on an
-*"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-*KIND, either express or implied.  See the License for the
-*specific language governing permissions and limitations
-*under the License.
+* Unless required by applicable law or agreed to in writing,
+* software distributed under the License is distributed on an
+* "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+* KIND, either express or implied. See the License for the
+* specific language governing permissions and limitations
+* under the License.
+*
 */
 package org.wso2.appserver.integration.tests.protobufservice;
 
@@ -31,10 +32,14 @@ import java.io.File;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
+/**
+ * Test case to test ProtobufService(binary service)
+ */
 public class ProtobufTestCase extends ASIntegrationTest {
 
     private ServerConfigurationManager serverManager = null;
     private WebAppAdminClient webAppAdminClient;
+    //web app which holds protocol buffer service interface.
     private final String webAppFileName = "protobuf-samples-stockquote.war";
     private final String webAppName = "protobuf-samples-stockquote";
 
@@ -42,7 +47,9 @@ public class ProtobufTestCase extends ASIntegrationTest {
     public void init() throws Exception {
         super.init();
         serverManager = new ServerConfigurationManager(asServer);
+        //due to a bug in AS-server, need to restart forcefully.
         serverManager.restartForcefully();
+        //initialize again after restart.
         super.init();
         webAppAdminClient = new WebAppAdminClient(backendURL, sessionCookie);
     }
@@ -61,8 +68,10 @@ public class ProtobufTestCase extends ASIntegrationTest {
             dependsOnMethods = "testProtoBufServiceDeployment")
     public void testInvokeProtoBufService() throws Exception {
         StockQuoteClient stockQuoteClient = new StockQuoteClient();
+        //starting the binary service client.
         stockQuoteClient.startClient();
-
+        //Assign the response collected by the binary service client to response attributes in created binary
+        // service stub.
         StockQuoteService.GetQuoteResponse quoteResponse = stockQuoteClient.getQuote();
         assertEquals(quoteResponse.getSymbol(), "IBM", "Incorrect Response");
         assertEquals(quoteResponse.getName(), "IBM Company", "Incorrect Response");
@@ -70,7 +79,8 @@ public class ProtobufTestCase extends ASIntegrationTest {
         StockQuoteService.GetFullQuoteResponse fullQuoteResponse = stockQuoteClient.getFullQuoteResponse();
         assertEquals(fullQuoteResponse.getTradeHistoryCount(), 1000, "Incorrect Response");
 
-        StockQuoteService.GetMarketActivityResponse marketActivityResponse = stockQuoteClient.getMarketActivityResponse();
+        StockQuoteService.GetMarketActivityResponse marketActivityResponse = stockQuoteClient.
+                getMarketActivityResponse();
         assertEquals(marketActivityResponse.getQuotesCount(), 2, "Incorrect Response");
         assertEquals(marketActivityResponse.getQuotes(0).getSymbol(), "IBM", "Incorrect Response");
         assertEquals(marketActivityResponse.getQuotes(1).getSymbol(), "SUN", "Incorrect Response");
@@ -80,13 +90,12 @@ public class ProtobufTestCase extends ASIntegrationTest {
 
     @AfterClass(alwaysRun = true)
     public void stop() throws Exception {
-        Thread.sleep(10000); //let server to clear the artifact undeployment
         if (serverManager != null) {
             webAppAdminClient.deleteWebAppFile(webAppFileName);
             assertTrue(WebAppDeploymentUtil.isWebApplicationUnDeployed(
                     backendURL, sessionCookie, webAppName),
                     "Web Application unDeployment failed");
-            Thread.sleep(3000);
+            Thread.sleep(3000); //wait for artifact undeployment.
             serverManager.restoreToLastConfiguration();
         }
     }
