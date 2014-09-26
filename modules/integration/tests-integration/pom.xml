@@ -277,7 +277,6 @@
         <dependency>
             <groupId>com.googlecode.protobuf-rpc-pro</groupId>
             <artifactId>protobuf-rpc-pro-duplex</artifactId>
-            <version>${protobuf-rpc-pro-duplex.version}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
