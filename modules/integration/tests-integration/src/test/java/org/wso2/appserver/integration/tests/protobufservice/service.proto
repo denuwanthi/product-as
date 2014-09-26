@@ -37,35 +37,28 @@ message GetQuoteResponse{
 
 message GetFullQuoteResponse{
 message TradingDay{
- required int32 day=1;
- required GetQuoteResponse quote =2;
+    required int32 day=1;
+    required GetQuoteResponse quote =2;
 }
-
-
-	repeated TradingDay tradeHistory=1;
-
+    repeated TradingDay tradeHistory=1;
 }
 
 message GetMarketActivity{
-
-repeated string symbol=1;
+    repeated string symbol=1;
 }
 
 message GetMarketActivityResponse{
-
-repeated GetQuoteResponse  quotes=1;
+    repeated GetQuoteResponse  quotes=1;
 }
 
 message PlaceOrder{
-required string symbol = 1;
-required int32 quantity = 2;
-required double price = 3;
+    required string symbol = 1;
+    required int32 quantity = 2;
+    required double price = 3;
 }
 
 message Void{
-
 }
-
 
 service SimpleStockQuoteService{
 	rpc getQuote(GetQuote) returns (GetQuoteResponse);
